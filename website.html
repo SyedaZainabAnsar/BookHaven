@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Book Haven | A New World on Every Page</title>
+<link rel="stylesheet" href="website.css">
+</head>
+<body>
+
+<header>
+  <h1>BOOK HAVEN</h1>
+  <p class="tagline">A NEW WORLD ON EVERY PAGE</p>
+
+  <!-- Grass + tree + girl silhouette reading (right aligned) -->
+  <svg class="scene" viewBox="0 0 1100 220" preserveAspectRatio="xMaxYMax meet" role="img"
+       aria-label="Silhouette of a girl reading a book against a tree on a grassy hill">
+
+    <!-- ground -->
+    <path d="M0 200 Q 300 175 600 190 T 1100 180 L1100 220 L0 220 Z" fill="#b9dcc0"/>
+
+    <!-- tree (right) -->
+    <g>
+      <path d="M930 215 L942 80 L968 80 L982 215 Z" fill="#8d7a8f"/>
+      <path d="M950 120 Q 920 100 905 80" stroke="#8d7a8f" stroke-width="8" fill="none" stroke-linecap="round"/>
+      <path d="M962 105 Q 990 90 1005 70" stroke="#8d7a8f" stroke-width="8" fill="none" stroke-linecap="round"/>
+      <g class="leaves">
+        <circle cx="955" cy="55"  r="48" fill="#a8d5b5"/>
+        <circle cx="910" cy="80"  r="36" fill="#bfe2c8"/>
+        <circle cx="1005" cy="75" r="38" fill="#bfe2c8"/>
+        <circle cx="960" cy="95"  r="30" fill="#cfe8d5"/>
+      </g>
+    </g>
+
+    <!-- girl silhouette, sitting against trunk, reading -->
+    <g fill="#5a4e63">
+      <!-- legs stay still; upper body breathes -->
+      <!-- body -->
+      <g class="breathe">
+      <path d="M885 205 Q 880 160 900 140 Q 915 128 928 135 L 932 205 Z"/>
+      <!-- head + hair -->
+      <g class="head">
+        <circle cx="906" cy="122" r="12"/>
+        <path d="M896 120 Q 892 140 898 150 Q 905 130 908 118 Z"/>
+      </g>
+      <!-- arm to book -->
+      <path class="arm" d="M910 150 Q 890 160 872 160 L 874 168 Q 896 168 914 158 Z"/>
+      </g>
+      <!-- legs -->
+      <path d="M880 205 Q 850 205 830 198 Q 828 190 845 190 L 895 192 Z"/>
+    </g>
+    <!-- book -->
+    <g>
+      <path d="M850 150 L 872 156 L 872 178 L 850 172 Z" fill="#f9d5d3" stroke="#5a4e63" stroke-width="1.5"/>
+      <path class="page" d="M850 150 L 872 156 L 872 178 L 850 172 Z" fill="#fdf6ec" stroke="#5a4e63" stroke-width="1"/>
+    </g>
+
+    <!-- grass blades -->
+    <g fill="#8fc9a0">
+      <path class="grass-a" d="M780 208 L784 180 L790 208 Z"/>
+      <path class="grass-b" d="M800 210 L806 176 L812 210 Z"/>
+      <path class="grass-a" d="M820 210 L822 186 L830 210 Z"/>
+      <path class="grass-b" d="M845 212 L850 184 L856 212 Z"/>
+      <path class="grass-a" d="M905 212 L910 182 L917 212 Z"/>
+      <path class="grass-b" d="M945 214 L950 184 L957 214 Z"/>
+      <path class="grass-a" d="M985 212 L990 180 L997 212 Z"/>
+      <path class="grass-b" d="M1020 210 L1026 182 L1032 210 Z"/>
+      <path class="grass-a" d="M1055 210 L1060 184 L1067 210 Z"/>
+      <path class="grass-b" d="M1080 212 L1085 188 L1091 212 Z"/>
+      <path class="grass-a" d="M700 200 L704 176 L710 200 Z"/>
+      <path class="grass-b" d="M740 204 L745 180 L751 204 Z"/>
+      <path class="grass-a" d="M120 200 L124 176 L130 200 Z"/>
+      <path class="grass-b" d="M420 196 L424 172 L430 196 Z"/>
+      <path class="grass-a" d="M560 196 L564 174 L570 196 Z"/>
+    </g>
+  </svg>
+</header>
+
+<!-- NAV BAR -->
+<nav aria-label="Main">
+  <div><a href="#home" data-view="home">Home</a></div>
+  <div><a href="#recommendations" data-view="recommendations">Recommendations</a></div>
+  <div><a href="#connect" data-view="connect">Connect</a></div>
+  <div><a href="#reviews" data-view="reviews">Reviews</a></div>
+</nav>
+
+<div class="view active" id="v-home"><main>
+  <h2>Discover New Books</h2>
+  <p>End of "what to read next" starts here</p>
+</main>
+<div class="home-extra">
+  <section class="panel p-pink" aria-labelledby="h-sur">
+    <h3 id="h-sur">Surprise me</h3>
+    <div id="pick" aria-live="polite"></div>
+    <button class="btn" id="pickBtn" type="button">Pick another</button>
+  </section>
+  <section class="panel p-sky" aria-labelledby="h-q">
+    <h3 id="h-q">Thought of the day</h3>
+    <p id="quote" aria-live="polite"></p>
+    <button class="btn" id="quoteBtn" type="button">Next thought</button>
+  </section>
+  <section class="panel p-mint" aria-labelledby="h-goal">
+    <h3 id="h-goal">My reading goal</h3>
+    <div class="goal-num"><span id="gRead">0</span> / <span id="gGoal">12</span></div>
+    <div>books this year</div>
+    <div class="bar"><span id="gBar"></span></div>
+    <div class="goal-btns">
+      <button class="btn" id="gMinus" type="button" aria-label="Remove a book read">&minus;</button>
+      <button class="btn" id="gPlus" type="button">I finished one!</button>
+    </div>
+  </section>
+  <section class="panel p-lav" aria-labelledby="h-mood">
+    <h3 id="h-mood">What's your mood today?</h3>
+    <div class="chips" id="chips"></div>
+  </section>
+</div></div>
+<div class="view" id="v-recommendations"><div class="rec-layout">
+  <aside class="shelf" aria-hidden="true"></aside>
+
+  <section class="rec-main">
+    <h2>We'll find a book according to your preferences</h2>
+
+    <div class="cards">
+      <div class="card pink">
+        <label for="author">Author</label>
+        <input type="text" id="author" placeholder="Favourite author">
+      </div>
+      <div class="card yellow">
+        <label for="genre">Genre</label>
+        <input type="text" id="genre" placeholder="Mystery, fantasy, romance...">
+      </div>
+      <div class="card blue">
+        <label for="mood">Mood</label>
+        <input type="text" id="mood" placeholder="Cozy, thrilling, hopeful...">
+      </div>
+      <div class="card green">
+        <label for="age">Age</label>
+        <input type="number" id="age" min="1" max="120" placeholder="Your age">
+      </div>
+    </div>
+
+    <div class="go-row">
+      <button class="btn" id="enterBtn" type="button">Enter</button>
+      <p>or press Enter in any box</p>
+    </div>
+    <div class="results" id="results" aria-live="polite"></div>
+  </section>
+
+  <aside class="shelf" aria-hidden="true"></aside>
+</div></div>
+<div class="view" id="v-connect"><main class="connect">
+  <p>Connect with authors and other book lovers</p>
+
+  <h2 class="c-sec">Authors to follow</h2>
+  <div class="c-grid" id="authorList"></div>
+
+  <h2 class="c-sec">Reader accounts</h2>
+  <div class="c-grid" id="readerList"></div>
+
+  <p class="c-note" id="followNote" aria-live="polite">Tap Follow to connect. You are following 0 people.</p>
+</main></div>
+<div class="view" id="v-reviews"><section class="reviews">
+  <div class="weekly">
+    <div>
+      <h2>Author of the week</h2>
+      <p>Mara Ellison</p>
+    </div>
+    <div>
+      <h2>Book of the week</h2>
+      <p>The Lantern Keeper's Atlas</p>
+    </div>
+  </div>
+
+  <div class="book-wrap">
+    <div class="book">
+      <!-- Spread 1, left: title page -->
+      <div class="pg left">
+        <h3>The Lantern Keeper's Atlas</h3>
+        <p>by Mara Ellison</p>
+      </div>
+
+      <!-- Spread 2, right: more reviews (revealed after the flip) -->
+      <div class="pg right">
+        <h3>More reviews</h3>
+        <p class="quote">"Slow, warm and full of maps I wanted to walk into."</p>
+        <p class="quote">"The ending made me close the book and just sit for a while."</p>
+        <p class="hint">Click the left page to turn back.</p>
+      </div>
+
+      <!-- Flipping leaf: front = rating, back = first reviews -->
+      <button class="leaf" id="leaf" type="button" aria-pressed="false" aria-label="Turn the page">
+        <div class="face front">
+          <h3>Rating</h3>
+          <div class="stars" aria-hidden="true">★★★★☆</div>
+          <div class="score">4.5 / 5</div>
+          <p class="hint">Click this page to read the reviews.</p>
+        </div>
+        <div class="face back">
+          <h3>What readers say</h3>
+          <p class="quote">"I finished it in one weekend and started it again on Monday."</p>
+          <p class="quote">"A cozy story with a quiet, stubborn kind of magic."</p>
+        </div>
+      </button>
+    </div>
+  </div>
+</section></div>
+
+<dialog id="chat" aria-labelledby="chatTitle">
+  <div class="chat-head">
+    <div class="avatar" id="chatAv" aria-hidden="true"></div>
+    <strong id="chatTitle"></strong>
+    <button type="button" class="msg" id="chatClose">Close</button>
+  </div>
+  <div class="chat-log" id="chatLog" aria-live="polite"></div>
+  <div class="chat-row">
+    <input type="text" id="chatInput" placeholder="Write a message..." aria-label="Your message">
+    <button type="button" class="btn" id="chatSend">Send</button>
+  </div>
+  <p class="chat-note">Sample chat: replies are automatic for this demo.</p>
+</dialog>
+
+<script>
+const views = ['home','recommendations','connect','reviews'];
+function show(name) {
+  if (!views.includes(name)) name = 'home';
+  views.forEach(v => document.getElementById('v-' + v).classList.toggle('active', v === name));
+  document.body.classList.toggle('connect', name === 'connect');
+  document.querySelectorAll('nav a').forEach(a =>
+    a.parentElement.classList.toggle('active', a.dataset.view === name));
+  window.scrollTo(0, 0);
+}
+document.querySelectorAll('nav a').forEach(a =>
+  a.addEventListener('click', e => { e.preventDefault(); show(a.dataset.view); }));
+show('home');
+
+/* ---------- BOOK DATA ---------- */
+const books = [
+  {t:"The Hobbit", a:"J.R.R. Tolkien", tags:"fantasy adventure magic dragons", mood:"adventurous cozy hopeful", min:8, d:"A homebody hobbit is pulled into a quest full of trolls, riddles and one very large dragon."},
+  {t:"Charlotte's Web", a:"E.B. White", tags:"classic animals friendship children", mood:"cozy hopeful gentle sad", min:5, d:"A clever spider saves a pig with the power of words."},
+  {t:"Anne of Green Gables", a:"L.M. Montgomery", tags:"classic coming-of-age family", mood:"cozy hopeful cheerful", min:9, d:"A talkative orphan wins over a whole farming town."},
+  {t:"Pride and Prejudice", a:"Jane Austen", tags:"romance classic comedy", mood:"romantic witty cozy", min:13, d:"Sharp wit, wrong first impressions and a slow-burning love story."},
+  {t:"And Then There Were None", a:"Agatha Christie", tags:"mystery crime thriller classic", mood:"thrilling tense dark", min:13, d:"Ten strangers on an island, and they are disappearing one by one."},
+  {t:"The Alchemist", a:"Paulo Coelho", tags:"adventure fable philosophy journey", mood:"hopeful calm inspiring", min:12, d:"A shepherd boy follows a dream across the desert."},
+  {t:"Project Hail Mary", a:"Andy Weir", tags:"science fiction scifi space humor", mood:"thrilling hopeful funny adventurous", min:14, d:"A lone astronaut wakes up with no memory and the fate of Earth in his hands."},
+  {t:"The Night Circus", a:"Erin Morgenstern", tags:"fantasy romance magic", mood:"romantic dreamy magical cozy", min:15, d:"Two young magicians are bound in a duel inside a circus that opens only at night."},
+  {t:"Circe", a:"Madeline Miller", tags:"mythology fantasy retelling", mood:"calm dreamy powerful", min:16, d:"The witch of Greek myth finally tells her own story."},
+  {t:"The Name of the Wind", a:"Patrick Rothfuss", tags:"fantasy magic music", mood:"adventurous dreamy", min:16, d:"A legendary wizard recounts how he became a legend."},
+  {t:"Gone Girl", a:"Gillian Flynn", tags:"thriller mystery crime psychological", mood:"thrilling dark tense", min:18, d:"A wife vanishes on her anniversary and every clue points somewhere new."},
+  {t:"Little Women", a:"Louisa May Alcott", tags:"classic family coming-of-age", mood:"cozy hopeful warm", min:10, d:"Four sisters grow up, dream big and hold each other together."}
+];
+const thoughts = [
+  "A good book is a door you can open any time you like.",
+  "Every shelf is a small map of someone's curiosity.",
+  "Read the last page first if you must. We won't tell.",
+  "The best bookmark is whatever was closest to the sofa.",
+  "Ten pages a day is a library by next year.",
+  "Rereading is just visiting an old friend."
+];
+const moods = ["cozy","thrilling","hopeful","dreamy","romantic","adventurous"];
+const rnd = a => a[Math.floor(Math.random() * a.length)];
+
+/* ---------- HOME EXTRAS ---------- */
+function newPick() {
+  const b = rnd(books);
+  document.getElementById('pick').innerHTML =
+    '<div class="pick-title"></div><div class="pick-meta"></div><p></p>';
+  const el = document.getElementById('pick');
+  el.querySelector('.pick-title').textContent = b.t;
+  el.querySelector('.pick-meta').textContent = 'by ' + b.a;
+  el.querySelector('p').textContent = b.d;
+}
+document.getElementById('pickBtn').addEventListener('click', newPick);
+newPick();
+
+let qi = new Date().getDate() % thoughts.length;
+const showQuote = () => { document.getElementById('quote').textContent = thoughts[qi]; };
+document.getElementById('quoteBtn').addEventListener('click', () => { qi = (qi + 1) % thoughts.length; showQuote(); });
+showQuote();
+
+let read = 0, goal = 12;
+try { read = +localStorage.getItem('anw-read') || 0; } catch (e) {}
+function drawGoal() {
+  document.getElementById('gRead').textContent = read;
+  document.getElementById('gGoal').textContent = goal;
+  document.getElementById('gBar').style.width = Math.min(100, read / goal * 100) + '%';
+  try { localStorage.setItem('anw-read', read); } catch (e) {}
+}
+document.getElementById('gPlus').addEventListener('click', () => { read++; drawGoal(); });
+document.getElementById('gMinus').addEventListener('click', () => { read = Math.max(0, read - 1); drawGoal(); });
+drawGoal();
+
+moods.forEach(m => {
+  const b = document.createElement('button');
+  b.type = 'button'; b.className = 'btn'; b.textContent = m;
+  b.addEventListener('click', () => {
+    document.getElementById('mood').value = m;
+    show('recommendations');
+    findBooks();
+  });
+  document.getElementById('chips').appendChild(b);
+});
+
+/* ---------- RECOMMENDATIONS ---------- */
+const words = v => v.toLowerCase().split(/[\s,]+/).filter(w => w.length > 2);
+function findBooks() {
+  const au = document.getElementById('author').value.trim().toLowerCase();
+  const ge = words(document.getElementById('genre').value);
+  const mo = words(document.getElementById('mood').value);
+  const ageV = parseInt(document.getElementById('age').value, 10);
+  const box = document.getElementById('results');
+  box.innerHTML = '';
+  if (!au && !ge.length && !mo.length && !ageV) {
+    box.innerHTML = '<div class="res"><p>Fill in at least one box, then press Enter.</p></div>';
+    return;
+  }
+  const scored = books.filter(b => !ageV || ageV >= b.min).map(b => {
+    let sc = 0;
+    if (au && b.a.toLowerCase().includes(au)) sc += 3;
+    ge.forEach(w => { if (b.tags.includes(w)) sc += 2; });
+    mo.forEach(w => { if (b.mood.includes(w)) sc += 2; });
+    return {b, sc};
+  }).sort((x, y) => y.sc - x.sc);
+  let top = scored.filter(x => x.sc > 0).slice(0, 3);
+  let note = '';
+  if (!top.length) { top = scored.slice(0, 3); note = 'No exact match, so here are a few picks to start with.'; }
+  if (!top.length) { box.innerHTML = '<div class="res"><p>No books found for that age. Try a different one.</p></div>'; return; }
+  if (note) { const n = document.createElement('p'); n.textContent = note; n.style.textAlign = 'center'; box.appendChild(n); }
+  top.forEach(({b}) => {
+    const r = document.createElement('div'); r.className = 'res';
+    r.innerHTML = '<h3></h3><small></small><p></p>';
+    r.querySelector('h3').textContent = b.t;
+    r.querySelector('small').textContent = 'by ' + b.a;
+    r.querySelector('p').textContent = b.d;
+    box.appendChild(r);
+  });
+}
+document.getElementById('enterBtn').addEventListener('click', findBooks);
+document.querySelectorAll('.card input').forEach(i =>
+  i.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); findBooks(); } }));
+
+/* ---------- CONNECT ---------- */
+const authors = [
+  {n:"Mara Ellison", s:"Cozy fantasy and maps", x:"4 books"},
+  {n:"Theo Banerjee", s:"Science fiction", x:"6 books"},
+  {n:"Lucia Fernandez", s:"Historical romance", x:"3 books"},
+  {n:"Daniel Okafor", s:"Adventures for young readers", x:"8 books"}
+];
+const readers = [
+  {n:"Aisha", u:"@pageturner_aisha", s:"Reading The Hobbit", x:"31 books read"},
+  {n:"Sam", u:"@cozynook_sam", s:"Reading Anne of Green Gables", x:"18 books read"},
+  {n:"Maya", u:"@midnight_maya", s:"Reading Gone Girl", x:"44 books read"},
+  {n:"Zain", u:"@bookworm_zain", s:"Reading Project Hail Mary", x:"27 books read"},
+  {n:"Lena", u:"@dreamy_lena", s:"Reading The Night Circus", x:"22 books read"},
+  {n:"Omar", u:"@plotwist_omar", s:"Reading And Then There Were None", x:"35 books read"}
+];
+let following = 0;
+function accountCard(o, sub, isAuthor) {
+  const c = document.createElement('div'); c.className = 'c-card';
+  c.innerHTML = '<div class="avatar" aria-hidden="true"></div><div class="c-info"><div class="c-name"></div><div class="c-sub"></div><div class="c-sub"></div></div><div class="c-btns"><button type="button" class="msg">Message</button><button type="button" class="follow">Follow</button></div>';
+  c.querySelector('.avatar').textContent = o.n[0];
+  c.querySelector('.c-name').textContent = o.n;
+  const subs = c.querySelectorAll('.c-sub');
+  subs[0].textContent = sub;
+  subs[1].textContent = o.x;
+  const m = c.querySelector('.msg');
+  m.setAttribute('aria-label', 'Message ' + o.n);
+  m.addEventListener('click', () => openChat(o, isAuthor));
+  const b = c.querySelector('.follow');
+  b.setAttribute('aria-label', 'Follow ' + o.n);
+  b.addEventListener('click', () => {
+    const on = b.classList.toggle('on');
+    b.textContent = on ? 'Following' : 'Follow';
+    following += on ? 1 : -1;
+    document.getElementById('followNote').textContent =
+      'Tap Follow to connect. You are following ' + following + (following === 1 ? ' person.' : ' people.');
+  });
+  return c;
+}
+authors.forEach(a => document.getElementById('authorList').appendChild(accountCard(a, a.s, true)));
+readers.forEach(r => document.getElementById('readerList').appendChild(accountCard(r, r.u + ' · ' + r.s, false)));
+
+/* ---------- MESSAGING ---------- */
+const threads = {};
+let chatWith = null, chatIsAuthor = false;
+const replies = {
+  author: ["Thank you for writing to me! It means a lot.", "Great question. I'll share more about that soon.", "So glad you're reading. Tell me what you think when you finish!"],
+  reader: ["Hi! I'd love to swap book ideas.", "Oh nice, that one is on my list too!", "Tell me more. What did you like most about it?"]
+};
+function addBubble(text, who) {
+  const log = document.getElementById('chatLog');
+  const e = log.querySelector('.chat-empty'); if (e) e.remove();
+  const d = document.createElement('div'); d.className = 'bubble ' + who; d.textContent = text;
+  log.appendChild(d); log.scrollTop = log.scrollHeight;
+}
+function openChat(o, isAuthor) {
+  chatWith = o; chatIsAuthor = isAuthor;
+  document.getElementById('chatTitle').textContent = o.n;
+  document.getElementById('chatAv').textContent = o.n[0];
+  const log = document.getElementById('chatLog'); log.innerHTML = '';
+  const t = threads[o.n] || [];
+  if (!t.length) { const e = document.createElement('div'); e.className = 'chat-empty'; e.textContent = 'Say hello to ' + o.n + '.'; log.appendChild(e); }
+  t.forEach(m => addBubble(m.text, m.who));
+  document.getElementById('chat').showModal();
+  document.getElementById('chatInput').focus();
+}
+function sendChat() {
+  const inp = document.getElementById('chatInput');
+  const text = inp.value.trim(); if (!text || !chatWith) return;
+  const who = chatWith, auth = chatIsAuthor;
+  (threads[who.n] = threads[who.n] || []).push({text, who: 'me'});
+  addBubble(text, 'me'); inp.value = '';
+  setTimeout(() => {
+    const r = rnd(replies[auth ? 'author' : 'reader']);
+    threads[who.n].push({text: r, who: 'them'});
+    if (chatWith === who && document.getElementById('chat').open) addBubble(r, 'them');
+  }, 1200);
+}
+document.getElementById('chatSend').addEventListener('click', sendChat);
+document.getElementById('chatInput').addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); sendChat(); } });
+document.getElementById('chatClose').addEventListener('click', () => document.getElementById('chat').close());
+
+const leaf = document.getElementById('leaf');
+leaf.addEventListener('click', () => {
+  const flipped = leaf.classList.toggle('flipped');
+  leaf.setAttribute('aria-pressed', flipped);
+});
+</script>
+</body>
+</html>
