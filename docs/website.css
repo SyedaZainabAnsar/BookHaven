@@ -1,6 +1,3 @@
-/* =====================================================
-   SHARED STYLES  (Home page rules are unchanged)
-   ===================================================== */
 :root {
   --cream: #fdf6ec;
   --blush: #f9d5d3;
@@ -123,9 +120,7 @@ main p { margin: 0; }
   .leaves, .grass-a, .grass-b, .page, .head, .breathe, .arm { animation: none; }
 }
 
-/* =====================================================
-   SUB-PAGES
-   ===================================================== */
+
 header.sub { padding-bottom: 20px; }
 
 /* ---------- CONNECT PAGE ---------- */
