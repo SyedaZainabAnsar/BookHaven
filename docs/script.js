@@ -203,6 +203,21 @@ leaf.addEventListener('click', () => {
   leaf.setAttribute('aria-pressed', flipped);
 });
 
+/* ---------- MOBILE MENU ---------- */
+const menuBtn = document.getElementById('menuBtn');
+const siteNav = document.getElementById('siteNav');
+
+menuBtn.addEventListener('click', () => {
+  const isOpen = siteNav.classList.toggle('open');
+  menuBtn.setAttribute('aria-expanded', isOpen);
+});
+
+siteNav.querySelectorAll('a').forEach(a =>
+  a.addEventListener('click', () => {
+    siteNav.classList.remove('open');
+    menuBtn.setAttribute('aria-expanded', 'false');
+  }));
+
 /* ---------- DARK MODE ---------- */
 const themeBtn = document.getElementById('themeBtn');
 

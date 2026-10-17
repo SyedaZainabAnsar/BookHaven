@@ -72,11 +72,11 @@ header {
 
 .silhouette { fill: var(--ink); }
 
-body, nav, nav div, .theme-btn, .panel, .card, .c-card, .res, .pg, .face, .btn, .msg {
+body, nav, nav div, .menu-btn, .theme-btn, .panel, .card, .c-card, .res, .pg, .face, .btn, .msg {
   transition: background-color .3s, color .3s;
 }
 @media (prefers-reduced-motion: reduce) {
-  body, nav, nav div, .theme-btn, .panel, .card, .c-card, .res, .pg, .face, .btn, .msg { transition: none; }
+  body, nav, nav div, .menu-btn, .theme-btn, .panel, .card, .c-card, .res, .pg, .face, .btn, .msg { transition: none; }
 }
 
 header h1 {
@@ -100,7 +100,7 @@ header h1 {
 
 /* ---------- NAV BAR ---------- */
 nav {
-  display: flex;
+  display: none;
   gap: 12px;
   justify-content: center;
   flex-wrap: wrap;
@@ -120,6 +120,26 @@ nav a {
   text-decoration: none;
   font-family: Arial, sans-serif;
   font-size: 16px;
+}
+
+nav.open { display: flex; }
+
+.menu-btn {
+  display: block;
+  width: 100%;
+  padding: 14px 16px;
+  border: 0;
+  background: var(--mint);
+  color: var(--ink);
+  font-family: Arial, sans-serif;
+  font-size: 18px;
+  cursor: pointer;
+}
+.menu-btn:focus-visible { outline: 3px solid var(--ink); outline-offset: -3px; }
+
+@media (min-width: 700px) {
+  .menu-btn { display: none; }
+  nav { display: flex; }
 }
 
 nav div:hover { background: var(--blush); }
