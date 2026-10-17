@@ -5,10 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Book Haven | A New World on Every Page</title>
 <link rel="stylesheet" href="website.css">
+<script src="script.js" defer></script>
 </head>
 <body>
 
 <header>
+  <button id="themeBtn" class="theme-btn" type="button" aria-pressed="false">Dark mode</button>
   <h1>BOOK HAVEN</h1>
   <p class="tagline">A NEW WORLD ON EVERY PAGE</p>
 
@@ -33,7 +35,7 @@
     </g>
 
     <!-- girl silhouette, sitting against trunk, reading -->
-    <g fill="#5a4e63">
+    <g class="silhouette" fill="#5a4e63">
       <!-- legs stay still; upper body breathes -->
       <!-- body -->
       <g class="breathe">
@@ -219,6 +221,5 @@
   <p class="chat-note">Sample chat: replies are automatic for this demo.</p>
 </dialog>
 
-<script src="script.js"></script>
 </body>
 </html>

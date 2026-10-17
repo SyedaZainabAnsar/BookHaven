@@ -202,3 +202,12 @@ leaf.addEventListener('click', () => {
   const flipped = leaf.classList.toggle('flipped');
   leaf.setAttribute('aria-pressed', flipped);
 });
+
+/* ---------- DARK MODE ---------- */
+const themeBtn = document.getElementById('themeBtn');
+
+themeBtn.addEventListener('click', () => {
+  const isDark = document.body.classList.toggle('dark');
+  themeBtn.textContent = isDark ? 'Light mode' : 'Dark mode';
+  themeBtn.setAttribute('aria-pressed', isDark);
+});
