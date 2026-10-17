@@ -18,6 +18,8 @@
   --line: rgba(90, 78, 99, .25);
   --line-soft: rgba(90, 78, 99, .2);
   --field: rgba(255, 255, 255, .7);
+  --error: #b3261e;
+  --success: #1b5e20;
 }
 
 body.dark {
@@ -37,6 +39,8 @@ body.dark {
   --line: rgba(243, 236, 255, .3);
   --line-soft: rgba(243, 236, 255, .2);
   --field: rgba(0, 0, 0, .3);
+  --error: #ffb4ab;
+  --success: #a5d6a7;
 }
 
 * { box-sizing: border-box; }
@@ -415,3 +419,15 @@ dialog#chat::backdrop { background: rgba(90,78,99,.45); }
 .chat-row input:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; }
 .chat-row .btn { background: var(--ink); color: var(--cream); }
 .chat-note { margin: 0 14px 14px; font-size: 14px; font-style: italic; }
+
+/* ---------- CONTACT FORM ---------- */
+.c-form { max-width: 560px; margin: 0 auto; padding: 22px 20px; border-radius: 16px; background: var(--lavender); text-align: left; font-family: Garamond, serif; font-size: 20px; line-height: 1.3; color: var(--ink); }
+.f-row { margin-bottom: 16px; }
+.c-form label { display: block; margin-bottom: 6px; font-weight: bold; }
+.c-form input, .c-form textarea { width: 100%; padding: 10px 12px; border: 2px solid var(--line); border-radius: 10px; background: var(--field); font-family: Garamond, serif; font-size: 18px; color: var(--ink); resize: vertical; }
+.c-form input:focus-visible, .c-form textarea:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; }
+.c-form input.error, .c-form textarea.error { border-color: var(--error); }
+.f-msg { min-height: 1.3em; margin: 6px 0 0; font-family: Arial, sans-serif; font-size: 15px; }
+.f-msg.error { color: var(--error); font-weight: bold; }
+.f-count { margin: 4px 0 0; text-align: right; font-family: Arial, sans-serif; font-size: 14px; }
+.f-success { margin: 14px 0 0; font-family: Arial, sans-serif; font-size: 16px; font-weight: bold; color: var(--success); overflow-wrap: anywhere; }

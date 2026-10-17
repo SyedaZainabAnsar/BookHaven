@@ -162,6 +162,28 @@
   <h2 class="c-sec">Reader accounts</h2>
   <div class="c-grid" id="readerList"></div>
 
+  <h2 class="c-sec">Contact us</h2>
+  <form id="contactForm" class="c-form" novalidate>
+    <div class="f-row">
+      <label for="cName">Name</label>
+      <input type="text" id="cName" maxlength="60" autocomplete="name" aria-describedby="nameMsg">
+      <p class="f-msg" id="nameMsg" aria-live="polite"></p>
+    </div>
+    <div class="f-row">
+      <label for="cEmail">Email</label>
+      <input type="email" id="cEmail" maxlength="100" autocomplete="email" aria-describedby="emailMsg">
+      <p class="f-msg" id="emailMsg" aria-live="polite"></p>
+    </div>
+    <div class="f-row">
+      <label for="cMsg">Message</label>
+      <textarea id="cMsg" rows="5" maxlength="200" aria-describedby="msgMsg"></textarea>
+      <p class="f-count" id="msgCount">0 / 200</p>
+      <p class="f-msg" id="msgMsg" aria-live="polite"></p>
+    </div>
+    <button type="submit" class="btn">Send message</button>
+    <p class="f-success" id="formSuccess" aria-live="polite"></p>
+  </form>
+
   <p class="c-note" id="followNote" aria-live="polite">Tap Follow to connect. You are following 0 people.</p>
 </main></div>
 <div class="view" id="v-reviews"><section class="reviews">

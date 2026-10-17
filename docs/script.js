@@ -226,3 +226,54 @@ themeBtn.addEventListener('click', () => {
   themeBtn.textContent = isDark ? 'Light mode' : 'Dark mode';
   themeBtn.setAttribute('aria-pressed', isDark);
 });
+
+/* ---------- CONTACT FORM ---------- */
+const form = document.getElementById('contactForm');
+const nameIn = document.getElementById('cName');
+const emailIn = document.getElementById('cEmail');
+const msgIn = document.getElementById('cMsg');
+const nameMsg = document.getElementById('nameMsg');
+const emailMsg = document.getElementById('emailMsg');
+const msgMsg = document.getElementById('msgMsg');
+const msgCount = document.getElementById('msgCount');
+const formSuccess = document.getElementById('formSuccess');
+
+function setError(input, msgEl, text) {
+  msgEl.textContent = text;
+  msgEl.classList.add('error');
+  input.classList.add('error');
+  input.setAttribute('aria-invalid', 'true');
+}
+function clearError(input, msgEl) {
+  msgEl.textContent = '';
+  msgEl.classList.remove('error');
+  input.classList.remove('error');
+  input.removeAttribute('aria-invalid');
+}
+
+form.addEventListener('submit', e => {
+  e.preventDefault();
+  const name = nameIn.value.trim();
+  const email = emailIn.value.trim();
+  const message = msgIn.value.trim();
+  let ok = true;
+
+  if (name.length < 3) { setError(nameIn, nameMsg, 'Please enter your full name.'); ok = false; }
+  else clearError(nameIn, nameMsg);
+
+  if (!(email.includes('@') && email.includes('.'))) { setError(emailIn, emailMsg, 'Please enter a valid email.'); ok = false; }
+  else clearError(emailIn, emailMsg);
+
+  if (message.length < 10) { setError(msgIn, msgMsg, 'Tell us a little more (10+ characters).'); ok = false; }
+  else clearError(msgIn, msgMsg);
+
+  if (!ok) { formSuccess.textContent = ''; return; }
+
+  formSuccess.textContent = 'Thanks, ' + name + '! Your message has been sent.';
+  form.reset();
+  msgCount.textContent = '0 / 200';
+});
+
+msgIn.addEventListener('input', () => {
+  msgCount.textContent = msgIn.value.length + ' / 200';
+});
